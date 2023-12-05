@@ -20,6 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # blank path indicates home page
-    path('', include('blog.urls'), name="blog_urls")
+    path('', include('blog.urls'), name="blog_urls"),
 
+    # register summer note url
+    path('summernote/', include('django_summernote.urls')),
 ]
