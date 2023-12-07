@@ -19,6 +19,8 @@ class Post(models.Model):
     content = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    likes = models.ManyToManyField(
+        User, related_name='blogpost_like', blank=True)
 
     class Meta:
         ordering = ["-pub_date"]
@@ -26,8 +28,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def number_of_likes(self):
+        return self.likes.count()
 
-class comment(models.Model):
+
+class Comment(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="comments")
     name = models.CharField(max_length=80)
@@ -42,8 +47,8 @@ class comment(models.Model):
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
 
-
 # Custom model
+
 
 class Recipes(models.Model):
     author = models.ForeignKey(
@@ -54,7 +59,7 @@ class Recipes(models.Model):
     description = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(
-        User, related_name='recipes_like', blank=True)
+        User, related_name='recipe_like', blank=True)
 
     class Meta:
         ordering = ["pub_date"]

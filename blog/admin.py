@@ -1,11 +1,27 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment, Recipes
 from django_summernote.admin import SummernoteModelAdmin
 
 
 # use summernotefield for the blog content textfield
 # @ decorater will register post model and post admin class with admin site
 
-@admin.register(Post())
+@admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
-    summernote_fields("content")
+
+    list_filter = ('status', 'pub_date')
+    list_display = ('title', 'slug','status', 'pub_date')
+    search_fields = ('title', 'content')
+    prepopulated_fields = {'slug': ('title',)}
+    summernote_fields = ('content')
+
+@admin.register(Comment)
+class CommentAdmin(SummernoteModelAdmin):
+
+    list_filter = ('approved', 'pub_date')
+    list_display = ('name', 'body','approved', 'pub_date','post')
+    search_fields = ('name', 'email', 'body')
+    actions ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(approved=True)
