@@ -6,11 +6,11 @@ body {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #4A4A4F;
+    color: #4e8056;
 }
 
-.red-o {
-    color: #E84610;
+.pink-o {
+    color: #e9bfe7;
 }
 
 .thin {
@@ -22,7 +22,7 @@ body {
 }
 
 .dark-bg {
-    background-color: #445261;
+    background-color: #380f20;
 }
 
 .main-bg {
