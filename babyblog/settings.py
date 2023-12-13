@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'blog',
     'babyblog',
+    
 ]
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 SITE_ID = 1

@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
-from .models import Recipes
+from .models import Recipe
 
 
 
@@ -11,6 +11,12 @@ class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-pub_date")
     template_name = "index.html"
+    paginate_by = 6
+
+class RecipeList(generic.ListView):
+    model = Recipe
+    queryset = Recipe.objects.filter(status=1).order_by("-pub_date")
+    template_name = "recipe_index.html"
     paginate_by = 6
 
 
@@ -78,5 +84,6 @@ class PostLike(View):
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
-def recipe_item(request):
-    return render(request,"recipe/recipe_item.html")
+
+
+

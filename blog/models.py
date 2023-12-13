@@ -51,12 +51,14 @@ class Comment(models.Model):
 # Custom model
 
 
-class Recipes(models.Model):
+class Recipe(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="recipes"
     )
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=80)
     featured_image = CloudinaryField('image', default='placeholder')
+    excerpt = models.TextField(blank=True)
     ingredients = models.TextField()
     instructions = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -66,8 +68,7 @@ class Recipes(models.Model):
 
     class Meta:
         ordering = ["pub_date"]
-        verbose_name = "Recipe"
-
+        
     def __str__(self):
         return self.title
 
