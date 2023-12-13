@@ -57,7 +57,7 @@ class Recipes(models.Model):
     )
     title = models.CharField(max_length=80)
     ingredients = models.TextField()
-    description = models.TextField()
+    instructions = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(
         User, related_name='recipe_like', blank=True)

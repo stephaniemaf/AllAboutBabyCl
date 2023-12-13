@@ -26,3 +26,11 @@ class CommentAdmin(SummernoteModelAdmin):
 
     def approve_comments(self, request, queryset):
         queryset.update(approved=True)
+
+@admin.register(Recipes)
+class RecipesAdmin(SummernoteModelAdmin):
+    list_filter = ('ingredients', 'pub_date')
+    list_display = ('title', 'ingredients', 'pub_date')
+    search_fields = ('title', 'instructions')
+    summernote_fields = ('instructions')
+
