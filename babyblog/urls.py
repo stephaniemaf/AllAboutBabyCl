@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from blog.views import recipe
+from blog.views import recipe_item
 
 
 
@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # blank path indicates home page
     path('', include('blog.urls'), name="blog_urls"),
-    path('recipes/', include('blog.urls'), name="recipe_urls"),
+    path('recipe/', recipe_item, name="recipe"),
     path('summernote/', include('django_summernote.urls')),
     path("accounts/", include("allauth.urls")),
 

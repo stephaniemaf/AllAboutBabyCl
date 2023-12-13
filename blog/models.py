@@ -59,6 +59,7 @@ class Recipes(models.Model):
     ingredients = models.TextField()
     instructions = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User, related_name='recipe_like', blank=True)
 
@@ -68,5 +69,4 @@ class Recipes(models.Model):
     def __str__(self):
         return self.title
 
-    def number_of_likes(self):
-        return self.likes.count()
+    

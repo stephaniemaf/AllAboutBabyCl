@@ -29,8 +29,8 @@ class CommentAdmin(SummernoteModelAdmin):
 
 @admin.register(Recipes)
 class RecipesAdmin(SummernoteModelAdmin):
-    list_filter = ('ingredients', 'pub_date')
-    list_display = ('title', 'ingredients', 'pub_date')
+    list_filter = ('status','ingredients', 'pub_date')
+    list_display = ('title', 'ingredients','status','pub_date')
     search_fields = ('title', 'instructions')
     summernote_fields = ('instructions')
 
