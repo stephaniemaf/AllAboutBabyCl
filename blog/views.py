@@ -79,4 +79,4 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 def recipe_item(request):
-    return render(request,"recipe_item.html")
+    return render(request,"recipe/recipe_item.html")

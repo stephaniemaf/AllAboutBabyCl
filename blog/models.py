@@ -56,6 +56,7 @@ class Recipes(models.Model):
         User, on_delete=models.CASCADE, related_name="recipes"
     )
     title = models.CharField(max_length=80)
+    featured_image = CloudinaryField('image', default='placeholder')
     ingredients = models.TextField()
     instructions = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -65,6 +66,7 @@ class Recipes(models.Model):
 
     class Meta:
         ordering = ["pub_date"]
+        verbose_name = "Recipe"
 
     def __str__(self):
         return self.title
