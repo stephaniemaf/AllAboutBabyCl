@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
+from django.views.generic.edit import UpdateView
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm, RecipeCommentForm
@@ -18,6 +19,11 @@ class RecipeList(generic.ListView):
     queryset = Recipe.objects.filter(status=1).order_by("-pub_date")
     template_name = "recipe_index.html"
     paginate_by = 6
+
+class DeletePostComment(UpdateView):
+    model = CommentForm
+    fields = ['body']
+    template_name = "post_detail.html"
 
 
 class PostDetail(View):

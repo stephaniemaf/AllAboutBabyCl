@@ -36,6 +36,7 @@ body {
 
 .image-container {
     position: relative;
+
 }
 
 .image-flash {
@@ -43,11 +44,11 @@ body {
     bottom: 5%;
     min-width: 30%;
     left: -2px;
-    background-color: #23BBBB;
+    background-color: #291526;
 }
 
 .author {
-    color: white;
+    color: rgb(18, 13, 55);
     margin: 4px;
     text-transform: uppercase;
 }
@@ -85,7 +86,10 @@ body {
     transform: skew(15deg);
     z-index: 100;
 }
-
+.recipe-link {
+    text-decoration: none;
+    color:#445261
+}
 .post-link {
     text-decoration: none;
     color: #445261;
