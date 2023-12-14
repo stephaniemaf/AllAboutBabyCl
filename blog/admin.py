@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Recipe
+from .models import Post, Comment, Recipe, RecipeComment
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -34,3 +34,14 @@ class RecipesAdmin(SummernoteModelAdmin):
     search_fields = ('title', 'instructions')
     summernote_fields = ('instructions')
 
+
+@admin.register(RecipeComment)
+class RecipeCommentAdmin(SummernoteModelAdmin):
+
+    list_filter = ('approved', 'pub_date')
+    list_display = ('name', 'body', 'approved', 'pub_date', 'recipe')
+    search_fields = ('name', 'email', 'body')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(approved=True)
