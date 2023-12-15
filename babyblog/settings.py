@@ -33,7 +33,8 @@ DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['all-about-baby.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['8000-stephaniemaf-allaboutbab-2ahwmo40sg.us2.codeanyapp.com',
+                 'https://all-about-baby-e0fc081d5b2a.herokuapp.com/', 'localhost']
 
 
 # Application definition
