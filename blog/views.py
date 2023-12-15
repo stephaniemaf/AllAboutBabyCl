@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm, RecipeCommentForm
 from .models import Recipe
+from .models import Comment
 
 
 
@@ -20,11 +21,20 @@ class RecipeList(generic.ListView):
     template_name = "recipe_index.html"
     paginate_by = 6
 
-class DeletePostComment(UpdateView):
-    model = CommentForm
-    fields = ['body']
-    template_name = "post_detail.html"
+class UpdateComment(UpdateView):
+    model = Comment()
+    fields = ["body"]
+    template_name = "comment_update_form.html"
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user=self.request.user)
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.save()
+        return super().form_valid(form)
+    
 
 class PostDetail(View):
 
@@ -75,7 +85,7 @@ class PostDetail(View):
                 "comments": comments,
                 "commented": True,
                 "liked": liked,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
             },
         )
 
