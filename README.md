@@ -87,5 +87,11 @@ To get onto admin site Name: admin
 and a user             Name: Sarah
                     Password: project4
 
+                    
+GIT log in Stephaniemaf
+passoword AvaAlex!@
+
+hoted on heroku
+
 # notes
 Before i started this module i had a baby and doing this project with a newborn was quite intense and difficult i wasnt able to put in the amount of work and time i was before and its reflected in my work i understand i may not pass today but in the mean time i will keep learning and hopfully if i need to resubmit it will be up to the standard i want and is needed. 
