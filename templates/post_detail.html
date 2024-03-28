@@ -39,16 +39,18 @@
                             <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
                                 {% csrf_token %}
                                 {% if liked %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fas fa-heart"></i></button>
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
+                                        class="fas fa-heart"></i></button>
                                 {% else %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
+                                        class="far fa-heart"></i></button>
                                 {% endif %}
                             </form>
                             {% else %}
                             <span class="text-secondary"><i class="far fa-heart"></i></span>
                             {% endif %}
-                        <!-- The number of likes goes before the closing strong tag -->
-                        <span class="text-secondary">{{ post.number_of_likes }} </span>
+                            <!-- The number of likes goes before the closing strong tag -->
+                            <span class="text-secondary">{{ post.number_of_likes }} </span>
                         </strong>
                     </div>
                     <div class="col-1">
@@ -76,16 +78,24 @@
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
                         <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                        {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
+                        <strong>{{ comment.name }}:</strong>
+                        <br>
+                        <span class="date-style" class="text-muted">
                             <!-- The comment's created date goes here -->
-                            {{ comment.pub_date }}
-                        </span> wrote:
+                            <small>{{ comment.pub_date }}</small>
+                        </span>
                     </p>
                     <!-- The body of the comment goes before the | -->
-                    {{ comment.body | linebreaks }}
+                    <p>{{ comment.body | linebreaks }}</p>
+
+                    {% if user.is_authenticated and user == comment.user %}
+                    <a href=" {% url 'comment_update_form' comment.id %}" class="btn btn-edit">Edit</a>
+                    {% endif %}
+
+                    {% if user.is_authenticated and user == comment.user %}
+                    <a href=" {% url 'comment_update_form' comment.id %}" class="btn btn-edit">Delete</a>
+                    {% endif %}
                 </div>
-                <!-- Our for loop ends here -->
                 {% endfor %}
             </div>
         </div>
@@ -109,20 +119,10 @@
                 {% endif %}
                 {% endif %}
 
-                {% for comment in post.comments.all %}
-                    <div class="comment-container">   
-                        <p>{{ comment.text}}</p>
-                        {% if user.is_authenticated and user == comment.user %}
-                            <a href=" {% url 'comment_update_form' comment.id %}" class="edit-btn">Edit</a>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+
 
             </div>
         </div>
-        <!--{% include 'comment_update_form.html' %}
-        
-        
     </div>
 </div>
 
