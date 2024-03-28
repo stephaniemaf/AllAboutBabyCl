@@ -7,12 +7,11 @@
     <title>Edit comment</title>
 </head>
 <body>
-    <form method="post">  
-        {% csrf_token %}  
-       <label for="id_body">Body</label>
-       <textarea id="id_body" name="body">{{object.body}}</textarea>
-
-        <button type="submit">Update </button>
-    </form> 
+    <h1>Update Comment</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
 </body>
 </html>

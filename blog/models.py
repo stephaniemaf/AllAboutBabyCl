@@ -33,12 +33,13 @@ class Post(models.Model):
         return self.likes.count()
 
 
-class Comment(models.Model):
+class Comment(models.Model): #get rid of this??
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="comments", default=1)
    
     name = models.CharField(max_length=80)
-    email = models.EmailField()
     body = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)

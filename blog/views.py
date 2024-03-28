@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
-from django.views.generic.edit import UpdateView
-from django.http import HttpResponseRedirect
+from django.views.generic import UpdateView, ListView
+from django.http import HttpResponseRedirect, Http404
+from django.urls import reverse_lazy
 from .models import Post
 from .forms import CommentForm, RecipeCommentForm
 from .models import Recipe
@@ -22,18 +23,28 @@ class RecipeList(generic.ListView):
     paginate_by = 6
 
 class UpdateComment(UpdateView):
-    model = Comment()
+    model = Comment
     fields = ["body"]
     template_name = "comment_update_form.html"
+    success_url = reverse_lazy("comment_list")
+
+    def get_object(self, queryset=None):
+        # Retrieve the comment object based on the URL's pk parameter
+        obj = super().get_object(queryset)
+        # Check if the current user owns the comment, raise 404 if not
+        if obj.user != self.request.user:
+            raise Http404("You don't have permission to access this comment.")
+        return obj
+
+class CommentList(ListView):
+    model = Comment
+    template_name = "comment_list.html"
+    context_object_name = "comments"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(user=self.request.user)
+        return Comment.objects.filter(user=self.request.user)
 
-    def form_valid(self, form):
-        comment = form.save(commit=False)
-        comment.save()
-        return super().form_valid(form)
+
     
 
 class PostDetail(View):
