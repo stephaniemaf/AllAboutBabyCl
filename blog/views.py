@@ -28,15 +28,6 @@ class UpdateComment(UpdateView):
     fields = ["body"]
     template_name = "comment_update_form.html"
     success_url = reverse_lazy('post_detail') 
-    
-
-    def get_object(self, queryset=None):
-        # Retrieve the comment object based on the URL's pk parameter
-        obj = super().get_object(queryset)
-        # Check if the current user owns the comment, raise 404 if not
-        if obj.user != self.request.user:
-            raise Http404("You don't have permission to access this comment.")
-        return obj
 
     def get_success_url(self):
         return reverse_lazy('post_detail', kwargs={'slug': self.object.post.slug})
