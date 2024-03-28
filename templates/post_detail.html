@@ -104,16 +104,16 @@
                 <form method="post" style="margin-top: 1.3em;">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-signup">Submit</button>
                 </form>
                 {% endif %}
                 {% endif %}
 
                 {% for comment in post.comments.all %}
-                    <div>   
-                        <p> {{ comment.text}} </p>
+                    <div class="comment-container">   
+                        <p>{{ comment.text}}</p>
                         {% if user == comment.user %}
-                            <a href=" {% url 'comment_update_form' comment.id %}">Edit comment</a>
+                            <a href=" {% url 'comment_update_form' comment.id %}" class="edit-btn">Edit</a>
                         {% endif %}
                     </div>
                 {% endfor %}

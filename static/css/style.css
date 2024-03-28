@@ -144,3 +144,19 @@ body {
     background: transparent;
     border: none;
 }
+/* comment edit and delete styling*/
+.edit-btn {
+    font-family: Playfair Display, sans-serif;
+    background-color: rgb(81, 78, 78);
+    margin-left: 10px;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.comment-container{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
