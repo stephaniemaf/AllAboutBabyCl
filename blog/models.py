@@ -37,11 +37,11 @@ class Comment(models.Model): #get rid of this??
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="comments")
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="comments", default=1)
-   
+        User, on_delete=models.CASCADE, related_name="comments", null=True)   
     name = models.CharField(max_length=80)
     body = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=0)
     approved = models.BooleanField(default=False)
 
     class Meta:

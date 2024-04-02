@@ -82,6 +82,12 @@
     <main class="flex-shrink-0 main-bg">
         {% block content %}
         <!-- Content Goes here -->
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}</p>
+        {% else %}
+            <p>You are not logged in</p>
+        {% endif %}
+    
         {% endblock content %}
     </main>
 

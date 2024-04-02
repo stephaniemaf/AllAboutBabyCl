@@ -21,7 +21,7 @@ class CommentAdmin(SummernoteModelAdmin):
 
     list_filter = ('approved', 'pub_date')
     list_display = ('name', 'body', 'approved', 'pub_date', 'post')
-    search_fields = ('name', 'email', 'body')
+    search_fields = ('name','body')
     actions = ['approve_comments']
 
     def approve_comments(self, request, queryset):

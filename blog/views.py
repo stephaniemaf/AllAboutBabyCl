@@ -54,7 +54,8 @@ class PostDetail(View):
                 "comment_form": CommentForm()
             },
         )
-    
+
+        
     def post(self, request, slug, *args, **kwargs):
 
         queryset = Post.objects.filter(status=1)
@@ -66,7 +67,6 @@ class PostDetail(View):
 
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
-            comment_form.instance.email = request.user.email
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
             comment.post = post
@@ -85,7 +85,7 @@ class PostDetail(View):
                 "comment_form": CommentForm(),
             },
         )
-
+    
 class PostLike(View):
     
     def post(self, request, slug, *args, **kwargs):

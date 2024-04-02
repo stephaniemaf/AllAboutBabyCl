@@ -12,4 +12,3 @@ class RecipeCommentForm(forms.ModelForm):
         model = RecipeComment
         fields = ('body',)
 
-
