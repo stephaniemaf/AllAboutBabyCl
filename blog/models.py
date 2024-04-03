@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.utils.text import slugify
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -58,8 +59,8 @@ class Recipe(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="recipes"
     )
-    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=80)
+    slug = models.SlugField(max_length=200, unique=True, default='')
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     ingredients = models.TextField()
@@ -72,6 +73,12 @@ class Recipe(models.Model):
     class Meta:
         ordering = ["pub_date"]
         
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)  
+        super().save(*args, **kwargs)
+
+        
     def __str__(self):
         return self.title
 
@@ -81,7 +88,7 @@ class Recipe(models.Model):
 class RecipeComment(models.Model):
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name="comments")
-    id = models.AutoField(primary_key=True)
+    
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()

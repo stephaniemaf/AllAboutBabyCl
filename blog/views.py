@@ -99,9 +99,9 @@ class PostLike(View):
 
 class RecipeDetail(View):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, slug, *args, **kwargs):
         queryset = Recipe.objects.filter(status=1)
-        recipe = get_object_or_404(queryset)
+        recipe = get_object_or_404(queryset,slug=slug)
         comments = recipe.comments.filter(approved=True).order_by("-pub_date")
         liked = False
         if recipe.likes.filter(id=self.request.user.id).exists():
@@ -119,10 +119,10 @@ class RecipeDetail(View):
             },
         )
     
-    def post(self, request, id, *args, **kwargs):
+    def post(self, request, slug, *args, **kwargs):
 
         queryset = Recipe.objects.filter(status=1)
-        recipe = get_object_or_404(queryset, id=id)
+        recipe = get_object_or_404(queryset,slug=slug)
         comments = recipe.comments.filter(approved=True).order_by("-pub_date")
         liked = False
         if recipe.likes.filter(id=self.request.user.id).exists():
@@ -152,8 +152,8 @@ class RecipeDetail(View):
 
 class RecipeLike(View):
     
-    def post(self, request, id, *args, **kwargs):
-        recipe = get_object_or_404(Recipe, id=id)
+    def post(self, request, slug, *args, **kwargs):
+        recipe = get_object_or_404(Recipe, slug=slug)
         if recipe.likes.filter(id=request.user.id).exists():
             recipe.likes.remove(request.user)
         else:

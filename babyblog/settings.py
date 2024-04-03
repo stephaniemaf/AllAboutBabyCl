@@ -33,7 +33,7 @@ DEBUG = True
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['8000-stephaniemaf-allaboutbab-lxuikf044o.us1.codeanyapp.com',
+ALLOWED_HOSTS = ['8000-stephaniemaf-allaboutbab-2be7z3x534.us1.codeanyapp.com',
                  'all-about-baby-e0fc081d5b2a.herokuapp.com', 'localhost']
 
 
