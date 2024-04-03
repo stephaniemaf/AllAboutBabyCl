@@ -1,5 +1,12 @@
 {% extends "base.html" %} {% block content %}
 
+{% if user.is_authenticated %}
+    <nav>
+        <a href="{% url 'recipe_add_user' %}">Add Recipe</a>
+    </nav>
+{% endif %}
+
+
 <div class="container-fluid">
     <div class="row">
 

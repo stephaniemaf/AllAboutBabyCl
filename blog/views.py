@@ -1,13 +1,12 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.views.generic import ListView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, Http404
-from .models import Post
+from .models import Post, Recipe, Comment
 from .forms import CommentForm, RecipeCommentForm
-from .models import Recipe
-from .models import Comment
+
 
 
 
@@ -28,6 +27,15 @@ class UpdateComment(UpdateView):
     fields = ["body"]
     template_name = "comment_update_form.html"
     success_url = reverse_lazy('post_detail') 
+
+    def get_success_url(self):
+        return reverse_lazy('post_detail', kwargs={'slug': self.object.post.slug})
+
+class CreateRecipe(CreateView):
+    model = Recipe
+    fields = ["title","body","author"]
+    template_name = "recipe_add_user.html"
+    success_url = reverse_lazy('recipe_detail') 
 
     def get_success_url(self):
         return reverse_lazy('post_detail', kwargs={'slug': self.object.post.slug})

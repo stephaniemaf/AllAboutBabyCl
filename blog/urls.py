@@ -1,6 +1,6 @@
 from . import views
 from django.urls import path
-from .views import UpdateComment
+from .views import UpdateComment, CreateRecipe
 
 # connecting views to url
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('recipe/<slug:slug>/', views.RecipeDetail.as_view(), name='recipe_detail'),
     path('like/<slug:slug>', views.PostLike.as_view(), name='post_like'),
     path('recipe/like/<slug:slug>', views.RecipeLike.as_view(), name='recipe_like'),
-    path('comments/<int:pk>/update/', UpdateComment.as_view(), name='comment_update_form'),
+    path('comment/<int:pk>/update/', UpdateComment.as_view(), name='comment_update_form'),
+    path('recipe_add_user/', CreateRecipe.as_view(), name='recipe_add_user'),
 ]
