@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.edit import FormMixin
 from django.views.generic import ListView
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, Http404
 from .models import Post, Recipe, Comment
@@ -39,6 +40,7 @@ class CreateRecipe(CreateView,FormMixin):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        messages.success(self.request, 'Success, Please await admin approval')
         return super().form_valid(form)
 
 
