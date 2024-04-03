@@ -8,18 +8,11 @@
 </head>
 <body>
     <h1>Add Recipe</h1>
-    <form method="post">
+    <form enctype="multipart/form-data" method="post" >
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
-    <div class="card-body">
-        {% if recipe.status == 'awaiting_approval' %}
-        <div class="alert alert-success" role="alert">
-            Your post is awaiting approval
-        </div>
-        {% endif %}
-    </div>
     
 </body>
 </html>
