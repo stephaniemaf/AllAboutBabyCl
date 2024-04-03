@@ -11,11 +11,11 @@
                         <div class="card-md-4">
                             <div class="card-body">
                                 <div class="image-container">
-                                    {% if "placeholder" in recipe.featured_image.url %}
+                                    {% if recipe.featured_image.url %}
                                     <img class="card-img-top"
-                                        src="https://img.freepik.com/free-photo/flat-lay-baby-food-blue-background_23-2148580401.jpg">
+                                        src=" {{ recipe.featured_image.url }}">
                                     {% else %}
-                                    <img class="card-img-top" src=" {{ recipe.featured_image.url }}">
+                                    <img class="card-img-top" src="https://img.freepik.com/free-photo/flat-lay-baby-food-blue-background_23-2148580401.jpg">">
                                     {% endif %}
                                     <div class="image_flash">
                                         <p class="author">Author: {{recipe.author}}</p>
