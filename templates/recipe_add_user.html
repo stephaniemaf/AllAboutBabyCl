@@ -13,5 +13,13 @@
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
+    <div class="card-body">
+        {% if recipe.status == 'awaiting_approval' %}
+        <div class="alert alert-success" role="alert">
+            Your post is awaiting approval
+        </div>
+        {% endif %}
+    </div>
+    
 </body>
 </html>

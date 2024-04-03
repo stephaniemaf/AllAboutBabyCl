@@ -60,7 +60,7 @@ class Recipe(models.Model):
         User, on_delete=models.CASCADE, related_name="recipes"
     )
     title = models.CharField(max_length=80)
-    slug = models.SlugField(max_length=200, unique=True, default='')
+    slug = models.SlugField(max_length=200, unique=True,)
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     ingredients = models.TextField()

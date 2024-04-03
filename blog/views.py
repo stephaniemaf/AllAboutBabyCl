@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
-from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import FormMixin
 from django.views.generic import ListView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, Http404
 from .models import Post, Recipe, Comment
-from .forms import CommentForm, RecipeCommentForm
-
+from .forms import CommentForm, RecipeCommentForm, RecipeAddUser
 
 
 
@@ -31,15 +31,16 @@ class UpdateComment(UpdateView):
     def get_success_url(self):
         return reverse_lazy('post_detail', kwargs={'slug': self.object.post.slug})
 
-class CreateRecipe(CreateView):
+class CreateRecipe(CreateView,FormMixin):
     model = Recipe
-    fields = ["title","body","author"]
+    form_class = RecipeAddUser
     template_name = "recipe_add_user.html"
-    success_url = reverse_lazy('recipe_detail') 
+    success_url = reverse_lazy('recipe') 
 
-    def get_success_url(self):
-        return reverse_lazy('post_detail', kwargs={'slug': self.object.post.slug})
-    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 
 class PostDetail(View):
 

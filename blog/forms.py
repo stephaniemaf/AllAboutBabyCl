@@ -1,4 +1,4 @@
-from .models import Comment, RecipeComment
+from .models import Comment, RecipeComment, Recipe
 from django import forms
 
 
@@ -11,4 +11,9 @@ class RecipeCommentForm(forms.ModelForm):
     class Meta:
         model = RecipeComment
         fields = ('body',)
+
+class RecipeAddUser(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = ('title','author','featured_image','ingredients','instructions',)
 
