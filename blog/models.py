@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+
+
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -12,7 +16,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="blog_posts"
+        User, on_delete=models.CASCADE, related_name="posts"
     )
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
@@ -21,7 +25,7 @@ class Post(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
-        User, related_name='blogpost_like', blank=True)
+        User, related_name='post_likes', blank=True)
     
 
     class Meta:
@@ -34,22 +38,25 @@ class Post(models.Model):
         return self.likes.count()
 
 
-class Comment(models.Model): #get rid of this??
+class Comment(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="comments")
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="comments", null=True)   
-    name = models.CharField(max_length=80)
+        User, on_delete=models.CASCADE, related_name="comments")  
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey("content_type", "object_id")
     body = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     approved = models.BooleanField(default=False)
+    
 
     class Meta:
         ordering = ["pub_date"]
-
+    
     def __str__(self):
-        return f"Comment {self.body} by {self.name}"
+        return f"Comment {self.body} by {self.user}"
 
     
 # Custom model
@@ -68,7 +75,7 @@ class Recipe(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
-        User, related_name='blogrecipe_like', blank=True)
+        User, related_name='recipe_likse', blank=True)
 
     class Meta:
         ordering = ["pub_date"]
@@ -84,20 +91,3 @@ class Recipe(models.Model):
 
     def number_of_likes(self):
         return self.likes.count()
-
-class RecipeComment(models.Model):
-    recipe = models.ForeignKey(
-        Recipe, on_delete=models.CASCADE, related_name="comments")
-    
-    name = models.CharField(max_length=80)
-    email = models.EmailField()
-    body = models.TextField()
-    pub_date = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
-
-    class Meta:
-        ordering = ["pub_date"]
-
-    def __str__(self):
-        return f"Comment {self.body} by {self.name}"
-    

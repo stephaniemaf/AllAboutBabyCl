@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('blog', '0009_recipecomment'),
+        ('blog', '0008_auto_20231213_2016'),
     ]
 
     operations = [
@@ -17,9 +17,5 @@ class Migration(migrations.Migration):
             name='likes',
             field=models.ManyToManyField(blank=True, related_name='blogrecipe_like', to=settings.AUTH_USER_MODEL),
         ),
-        migrations.AlterField(
-            model_name='recipecomment',
-            name='id',
-            field=models.AutoField(primary_key=True, serialize=False),
-        ),
+     
     ]
