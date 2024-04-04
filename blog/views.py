@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.views import generic, View
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.edit import FormMixin
 from django.views.generic import ListView
 from django.contrib import messages
@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, Http404
 from .models import Post, Recipe, Comment
-from .forms import CommentForm, RecipeAddUser, CommentUpdateForm
+from .forms import CommentForm, RecipeAddUser, CommentUpdateForm, DeleteCommentForm
 
 
 
@@ -30,7 +30,19 @@ class UpdateComment(UpdateView,FormMixin):
     model = Comment
     form_class = CommentUpdateForm
     template_name = "comment_update_form.html"
-    success_url = reverse_lazy('post_detail') 
+    def get_success_url(self):
+        post_slug = self.object.post.slug
+        return reverse_lazy('post_detail', kwargs={'slug': post_slug})
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class DeleteComment(DeleteView,FormMixin):
+    model = Comment
+    form_class = DeleteCommentForm
+    template_name = "delete_comment_form.html"
+    success_url = reverse_lazy('post_detail')
 
     def form_valid(self, form):
         form.instance.author = self.request.user

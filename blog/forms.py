@@ -13,6 +13,11 @@ class CommentUpdateForm(forms.ModelForm):
         model = Comment
         fields = ('body',)
 
+class DeleteCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ()
+
 class RecipeAddUser(forms.ModelForm):
     class Meta:
         model = Recipe

@@ -13,7 +13,7 @@
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- The featured image URL goes in the src attribute -->
                 {% if "placeholder" in post.featured_image.url %}
-                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                <img src="https://img.freepik.com/free-photo/abstract-heavy-pink-haze-darkness_23-2148102013.jpg?w=900&t=st=1712268914~exp=1712269514~hmac=c165b5d817770b3393b58301431b5f2ea964782a5c9839511bab84d298ca77d5" width="100%">
                 {% else %}
                 <img src=" {{ post.featured_image.url }}" width="100%">
                 {% endif %}
@@ -86,6 +86,7 @@
 
                     {% if user.is_authenticated and user == comment.user %}
                     <a href=" {% url 'comment_update_form' comment.id %}" class="btn btn-edit">Edit</a>
+                    <a href=" {% url 'delete_comment_form' comment.id %}" class="btn btn-edit">Delete</a>
                     {% endif %}
                 </div>
                 {% endfor %}
