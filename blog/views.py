@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
-
+from django.contrib.contenttypes.models import ContentType
 from django.views import generic, View
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.edit import FormMixin
@@ -101,23 +101,14 @@ class PostDetail(View):
                 "comment_form": CommentForm(),
             },
         )
-    
-class PostLike(View):
-    
-    def post(self, request, slug, *args, **kwargs):
-        post = get_object_or_404(Post, slug=slug)
-        if post.likes.filter(id=request.user.id).exists():
-            post.likes.remove(request.user)
-        else:
-            post.likes.add(request.user)
-
-        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 class RecipeDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
-        recipe = get_object_or_404(Recipe,slug=slug)
-        comments = recipe.comments.filter(approved=True).order_by("-pub_date")
+        queryset = Recipe.objects.filter(status=1)
+        recipe = get_object_or_404(queryset,slug=slug)
+        content_type = ContentType.objects.get_for_model(recipe)
+        comments = Comment.objects.filter(content_type=content_type, object_id=recipe.id, approved=True).order_by("-pub_date")
         liked = False
         if recipe.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -130,25 +121,27 @@ class RecipeDetail(View):
                 "comments": comments,
                 "commented": False,
                 "liked": liked,
-                "comment_form": RecipeCommentForm()
+                "comment_form": CommentForm()
             },
         )
     
     def post(self, request, slug, *args, **kwargs):
-        recipe = get_object_or_404(Recipe,slug=slug)
+        queryset = Recipe.objects.filter(status=1)
+        recipe = get_object_or_404(queryset,slug=slug)
         comments = recipe.comments.filter(approved=True).order_by("-pub_date")
         liked = False
         if recipe.likes.filter(id=self.request.user.id).exists():
             liked = True
 
-        comment_form = RecipeCommentForm(data=request.POST)
+        comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.user = request.user
             comment.content_object = recipe
+            comment.recipe = recipe
             comment.save()
         else:
-            comment_form = RecipeCommentForm()
+            comment_form = CommentForm()
 
         return render(
             request,
@@ -158,9 +151,22 @@ class RecipeDetail(View):
                 "comments": comments,
                 "commented": True,
                 "liked": liked,
-                "comment_form": RecipeCommentForm()
+                "comment_form": CommentForm()
             },
         )
+
+    
+class PostLike(View):
+    
+    def post(self, request, slug, *args, **kwargs):
+        post = get_object_or_404(Post, slug=slug)
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
 
 class RecipeLike(View):
     

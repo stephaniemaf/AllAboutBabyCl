@@ -4,6 +4,7 @@ from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 
@@ -68,6 +69,7 @@ class Recipe(models.Model):
     )
     title = models.CharField(max_length=80)
     slug = models.SlugField(max_length=200, unique=True,)
+    comments = GenericRelation(Comment)
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     ingredients = models.TextField()
@@ -75,7 +77,7 @@ class Recipe(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
-        User, related_name='recipe_likse', blank=True)
+        User, related_name='recipe_like', blank=True)
 
     class Meta:
         ordering = ["pub_date"]
