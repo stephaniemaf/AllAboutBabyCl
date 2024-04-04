@@ -42,7 +42,26 @@ class DeleteComment(DeleteView,FormMixin):
     model = Comment
     form_class = DeleteCommentForm
     template_name = "delete_comment_form.html"
-    success_url = reverse_lazy('post_detail')
+    
+    def get_success_url(self):
+        comment = self.object
+
+        if hasattr(comment, 'post') and comment.post:
+            post_slug = comment.post.slug
+            return reverse_lazy('post_detail', kwargs={'slug': post_slug})
+        elif hasattr(comment, 'recipe') and comment.recipe:
+            recipe_slug = comment.recipe.slug
+            return reverse_lazy('recipe_detail', kwargs={'slug': recipe_slug})
+        else:
+        # Handle the case when the comment is not related to any post or recipe
+            return reverse_lazy('home')  # Redirect to a default URL
+ 
+
+    def get_object(self, queryset=None):
+        obj = super(DeleteView, self).get_object()
+        if not obj.user == self.request.user:
+            raise Http404
+        return obj
 
     def form_valid(self, form):
         form.instance.author = self.request.user

@@ -86,6 +86,7 @@
                     <!--add edit button-->
                     {% if user.is_authenticated and user == comment.user %}
                     <a href=" {% url 'comment_update_form' comment.id %}" class="btn btn-edit">Edit</a>
+                    <a href=" {% url 'delete_comment_form' comment.id %}" class="btn btn-edit">Delete</a>
                     {% endif %}
 
                 </div>
