@@ -20,10 +20,13 @@ class PostAdmin(SummernoteModelAdmin):
 class CommentAdmin(SummernoteModelAdmin):
 
     list_filter = ('approved', 'pub_date')
-    list_display = ('user','body', 'approved', 'pub_date',)
-    search_fields = ('name','body')
+    list_display = ('user','body', 'approved', 'pub_date','content_type')
+    search_fields = ('name','body','user__username')
     actions = ['approve_comments']
 
+    def content_type(self, obj):
+        content_type.short_description = 'Content Type'
+    
     def approve_comments(self, request, queryset):
         queryset.update(approved=True)
 

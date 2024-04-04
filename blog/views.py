@@ -85,7 +85,8 @@ class PostDetail(View):
             comment = comment_form.save(commit=False)
             comment.user = request.user
             comment.content_object = post
-            comment.post = post
+            content_type = ContentType.objects.get(app_label="blog", model="post")
+            comment.content_type = content_type
             comment.save()
         else:
             comment_form = CommentForm()
@@ -106,9 +107,8 @@ class RecipeDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
         queryset = Recipe.objects.filter(status=1)
-        recipe = get_object_or_404(queryset,slug=slug)
-        content_type = ContentType.objects.get_for_model(recipe)
-        comments = Comment.objects.filter(content_type=content_type, object_id=recipe.id, approved=True).order_by("-pub_date")
+        recipe = get_object_or_404(queryset, slug=slug)
+        comments = recipe.comments.filter(approved=True).order_by("-pub_date")
         liked = False
         if recipe.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -124,10 +124,12 @@ class RecipeDetail(View):
                 "comment_form": CommentForm()
             },
         )
-    
+
+        
     def post(self, request, slug, *args, **kwargs):
+
         queryset = Recipe.objects.filter(status=1)
-        recipe = get_object_or_404(queryset,slug=slug)
+        recipe = get_object_or_404(queryset, slug=slug)
         comments = recipe.comments.filter(approved=True).order_by("-pub_date")
         liked = False
         if recipe.likes.filter(id=self.request.user.id).exists():
@@ -138,7 +140,8 @@ class RecipeDetail(View):
             comment = comment_form.save(commit=False)
             comment.user = request.user
             comment.content_object = recipe
-            comment.recipe = recipe
+            content_type = ContentType.objects.get(app_label="blog", model="recipe")
+            comment.content_type = content_type
             comment.save()
         else:
             comment_form = CommentForm()
@@ -151,9 +154,10 @@ class RecipeDetail(View):
                 "comments": comments,
                 "commented": True,
                 "liked": liked,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
             },
         )
+
 
     
 class PostLike(View):

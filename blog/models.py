@@ -2,9 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
-from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericRelation
 
 
 
@@ -41,12 +39,12 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, related_name="comments")
+        'blog.Post', on_delete=models.CASCADE, related_name='comments', null=True, blank=True)
+    recipe = models.ForeignKey(
+        'blog.Recipe', on_delete=models.CASCADE, related_name='comments', null=True, blank=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="comments")  
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey("content_type", "object_id")
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, blank=True)
     body = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
@@ -69,7 +67,6 @@ class Recipe(models.Model):
     )
     title = models.CharField(max_length=80)
     slug = models.SlugField(max_length=200, unique=True,)
-    comments = GenericRelation(Comment)
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     ingredients = models.TextField()
