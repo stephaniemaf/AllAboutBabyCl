@@ -12,7 +12,9 @@ from django.http import HttpResponseRedirect, Http404
 from .models import Post, Recipe, Comment
 from .forms import CommentForm, RecipeAddUser, CommentUpdateForm, DeleteCommentForm
 
-
+class HomePage(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'home.html')
 
 class PostList(generic.ListView):
     model = Post

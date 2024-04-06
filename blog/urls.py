@@ -5,7 +5,8 @@ from .views import UpdateComment, CreateRecipe
 # connecting views to url
 
 urlpatterns = [
-    path('', views.PostList.as_view(), name='home'),
+    path('', views.HomePage.as_view(), name='home'),
+    path('blog/', views.PostList.as_view(), name='blog'),
     path('recipe/', views.RecipeList.as_view(), name='recipe'),
     path('recipe/<slug:slug>/', views.RecipeDetail.as_view(), name='recipe_detail'),
     path('recipe_add_user/', views.CreateRecipe.as_view(), name='recipe_add_user'),
