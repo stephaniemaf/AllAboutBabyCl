@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Recipe
+from .models import Post, Comment, Recipe, Subscribe
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -40,3 +40,12 @@ class RecipesAdmin(SummernoteModelAdmin):
     
     def make_published(self, request, queryset):
         queryset.update(status=1)
+
+@admin.register(Subscribe)
+class SubscribeAdmin(SummernoteModelAdmin):
+
+    list_filter = ('first_name', 'last_name','email','phone_number','subscribed_at')
+    list_display = ('first_name', 'last_name','email')
+    search_fields = ('first_name', 'last_name','email')
+    prepopulated_fields = {'email': ('first_name', 'last_name')}
+    summernote_fields = ('email',)

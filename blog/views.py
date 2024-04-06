@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, Http404
-from .models import Post, Recipe, Comment
-from .forms import CommentForm, RecipeAddUser, CommentUpdateForm, DeleteCommentForm
+from .models import Post, Recipe, Comment, Subscribe
+from .forms import CommentForm, RecipeAddUser, CommentUpdateForm, DeleteCommentForm, Subscriber
 
 class HomePage(View):
     def get(self, request, *args, **kwargs):
@@ -94,7 +94,17 @@ class CreateRecipe(CreateView,FormMixin):
         messages.success(self.request, 'Success, Please await admin approval')
         return super().form_valid(form)
 
+class Subscribe(View, FormMixin):
+    model = Subscribe
+    form_class = Subscriber
+    template_name = "subscribe.html"
+    success_url = reverse_lazy('subscribe')
 
+    def form_valid(self, form):
+        form.instance.email = self.request.user
+        messages.success(self.request, 'Subscribed')
+        return super().form_valid(form)
+        
 class PostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
