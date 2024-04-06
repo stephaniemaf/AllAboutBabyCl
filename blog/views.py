@@ -1,16 +1,17 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.views import generic, View
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.edit import FormMixin
 from django.views.generic import ListView
+from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, Http404
 from .models import Post, Recipe, Comment, Subscribe
-from .forms import CommentForm, RecipeAddUser, CommentUpdateForm, DeleteCommentForm, Subscriber
+from .forms import CommentForm, RecipeAddUser, CommentUpdateForm, DeleteCommentForm, SubscriberForm
 
 class HomePage(View):
     def get(self, request, *args, **kwargs):
@@ -94,14 +95,22 @@ class CreateRecipe(CreateView,FormMixin):
         messages.success(self.request, 'Success, Please await admin approval')
         return super().form_valid(form)
 
-class Subscribe(View, FormMixin):
-    model = Subscribe
-    form_class = Subscriber
+class Subscribe(FormView):
+    
+    form_class = SubscriberForm
     template_name = "subscribe.html"
     success_url = reverse_lazy('subscribe')
 
+    def send_email(self):
+        email = self.cleaned_data['email']
+        subject = 'comfirmation of subscription'
+        message = 'Thank you for subscribing to All|About|Baby!'
+        send_mail(subject, message, 'user@email.com', [email])
+
     def form_valid(self, form):
         form.instance.email = self.request.user
+        form.save()
+        form.send_email()
         messages.success(self.request, 'Subscribed')
         return super().form_valid(form)
         
