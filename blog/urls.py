@@ -10,10 +10,11 @@ urlpatterns = [
     path('recipe/', views.RecipeList.as_view(), name='recipe'),
     path('recipe/<slug:slug>/', views.RecipeDetail.as_view(), name='recipe_detail'),
     path('recipe_add_user/', views.CreateRecipe.as_view(), name='recipe_add_user'),
+    path('subscribe/', views.Subscribe.as_view(), name='subscribe'),
     path('comment_update_form/<int:pk>/', views.UpdateComment.as_view(), name='comment_update_form'),
     path('delete_comment_form/<int:pk>/', views.DeleteComment.as_view(), name='delete_comment_form'),
     path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
     path('like/<slug:slug>', views.PostLike.as_view(), name='post_like'),
     path('recipe/like/<slug:slug>', views.RecipeLike.as_view(), name='recipe_like'),
-    path('subscribe/', views.Subscribe.as_view(), name='subscribe'),
+   
 ]

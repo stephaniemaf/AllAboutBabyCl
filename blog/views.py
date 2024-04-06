@@ -102,15 +102,15 @@ class Subscribe(FormView):
     success_url = reverse_lazy('subscribe')
 
     def send_email(self):
-        email = self.cleaned_data['email']
         subject = 'comfirmation of subscription'
         message = 'Thank you for subscribing to All|About|Baby!'
         send_mail(subject, message, 'user@email.com', [email])
 
     def form_valid(self, form):
-        form.instance.email = self.request.user
+        email = form.cleaned_data['email']
+        self.send_email(email)
+        form.instance.email = email
         form.save()
-        form.send_email()
         messages.success(self.request, 'Subscribed')
         return super().form_valid(form)
         
