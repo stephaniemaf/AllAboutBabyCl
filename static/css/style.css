@@ -196,6 +196,11 @@ body {
     color: white;
     background: #291526;
 }
+
+.nav-link:hover{
+    transform: scale(1.2);
+    text-decoration: underline;
+}
 .comment-container{
     display: flex;
     align-items: center;
