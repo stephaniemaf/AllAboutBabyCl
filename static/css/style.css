@@ -34,13 +34,34 @@ body {
     border: none;
     background-color: transparent;
 }
+/*blog and recipe post sizing */
+.img-card-top{
+    height: 200px;
+    object-fit: cover;
+}
 
 .image-container {
+    height: 200px; /* Set the desired height */
+    overflow: hidden;
+}
+
+.card-title {
+    font-size: 18px; /* Set the desired font size */
+    font-family: Lato,sans-serif;
+    font-weight: 600;
+
+}
+
+.card-text {
+    font-size: 15px; /* Set the desired font size */
+    font-family: Lato,sans-serif;
+}
+.image-container-home {
     position: relative;
     display:inline-block;
 
 }
-
+/*subscription form background image*/
 .image-container-sub{
     position: relative;
     display:inline-block;
@@ -51,7 +72,7 @@ body {
     position: relative;
 }
 
-.image-container .overlay{
+.image-container-home .overlay{
     position:absolute;
     top:0;
     left:0;
