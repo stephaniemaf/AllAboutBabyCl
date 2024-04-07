@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subscribe</title>
-</head>
-<body>
-    <h1>Subscribe</h1>
-    <form method="post" action="{% url 'subscribe' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Subscribe</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+
+
+<div class="image-container-sub">
+    <div class="card-body">
+        <img src="{% static 'images/bkgbaby.jpg' %}" class="img-fluid" alt="Responsive image" style="width:100%">
+        <!--write over the image-->
+        <div class="overlay-sub">
+            <span><h2 style="position: absolute; bottom: 300px;">Subscribe:</h2>
+                <form method="post" action="{% url 'subscribe' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Subscribe</button>
+                </form>
+            </span>
+        </div>
+    </div>
+</div>
+  
+       
+{% endblock %}

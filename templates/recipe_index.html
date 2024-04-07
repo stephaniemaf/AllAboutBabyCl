@@ -3,7 +3,7 @@
 <div class="container-fluid">
     {% if user.is_authenticated %}
         <nav>
-            <a href="{% url 'recipe_add_user' %}">Add Recipe</a>
+            <a href="{% url 'recipe_add_user' %}" class="nav-link-rec">Click here to submit your own recipe to share with others</a>
         </nav>
     {% endif %}
 </div>

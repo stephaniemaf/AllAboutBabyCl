@@ -26,7 +26,7 @@ body {
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #eef9da;
 }
 
 .card {
@@ -36,8 +36,14 @@ body {
 
 .image-container {
     position: relative;
-    display:inline-block
+    display:inline-block;
 
+}
+
+.image-container-sub{
+    position: relative;
+    display:inline-block;
+    width: 100%;
 }
 
 .card-body{
@@ -55,6 +61,29 @@ body {
     align-items: center;
  
 }
+
+.image-container-sub .overlay-sub{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.overlay-sub h2{
+    font-family: cursive;
+}
+
+.overlay-sub span{
+    
+    position:absolute;
+    top:20%;
+    right: 20%;
+    font-size: x-large;
+}
+
 .overlay span
 .overlay p{
     text-align: center;
@@ -73,6 +102,8 @@ body {
     font-family: Lato, sans-serif;
     font-size: 20px;
 }
+
+
 
 .image-flash {
     position: absolute;
@@ -200,6 +231,14 @@ body {
 .nav-link:hover{
     transform: scale(1.2);
     text-decoration: underline;
+}
+/*recipe add link*/
+.nav-link-rec{
+    color: rgb(19, 18, 18);
+    text-decoration: underline;
+    font-family: Lato, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
 }
 .comment-container{
     display: flex;

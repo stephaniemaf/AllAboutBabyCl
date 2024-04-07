@@ -33,7 +33,7 @@ DEBUG = True
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['8000-stephaniema-allaboutbab-nkr7143apcb.ws-eu110.gitpod.io',
+ALLOWED_HOSTS = ['8000-stephaniema-allaboutbab-ysllegkxygo.ws-eu110.gitpod.io',
                  'localhost']
 
 
