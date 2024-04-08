@@ -64,12 +64,63 @@ Expectation = I expect the footer to have the words Made by stephanie and links 
 Result = I clicked on each link and am brought to the front page of their respective sites.
 
 # The Blog page:
-To get here i clicked the blog nav link. On this page  i have blog posts. To test this i chose the first blog post on the page. 
-Expectation = I ecpected to cleack on the blog post and be brought to the post content where i would fine and image at the top of the page followed by the post content and under this a form for leaving comments on the bottom right and a list of comments on the left. I used content_type in my Comment model as i was using this model for both Blog posts and Recipes. I needed to use it to keep track of all my models in order to assign the right comments with theyre respective posts.
-Result = I clicked on the post and recieved and an attribute error for content type so i went back to my view page and imported content type at the top of the file and reloaded the page and there was no error now.
+To get here i clicked the blog nav link. On this page  i have blog posts. To test this i chose the first blog post on the page.
 
-# bugs 
-As of right now there is no known bugs on the site that i am aware of.
+Expectation = I ecpected to click on the blog post and be brought to the post content where i would fine and image at the top of the page followed by the post content and under this a form for leaving comments on the bottom right and a list of comments on the left. I used content_type in my Comment model as i was using this model for both Blog posts and Recipes. I needed to use it to keep track of all my models in order to assign the right comments with theyre respective posts.
+
+Result = I reloaded my terminal and recieved and a name error for content type
+
+Fix = So i went back to my view page and imported content type at the top of the file and reloaded the page and there was no error now.
+![error1](static/images/error1.png)
+## Blog Post:
+I clicked into the first post on the page as a logged OUT user.
+
+Expectation = To see only featured image, Post content and commentbox heading.
+Result = I did infavt only see featured image, Post content and commentbox heading.
+
+I returned the main blog post page and looged in as a registered user
+
+Expectation = To see featured image, Post content and commentbox heading and the form for leaving a comment
+Result = I did infact only see featured image, Post content and commentbox heading and the form for leaving a comment. 
+![comment](static/images/comment.png)
+
+As i was signed in i tested the features of this page.
+The like button when presses reloads the page and the favivon icon is filled in solid color indicating it has sussessfully been liked, a second click on the heart favivon will reload the page and unlike the post leaving a heart outline. The feature acted as normal.
+I left a comment as a user and a pop up box showed saying "Your comment is awaiting approval". I went into the admin panel approved the new comment and clicked view site. I expected to go back to the post content and see my new comment, however there was no comment showing.
+
+Fix = I looked at my database and i could see the comment was being saved however there was no post_id only content type_id. I went to my view page and looked at post detail and it seemed like the post field of the comment wasnt being set with the current post, so i added the code: comment.post = post and removed the content type code. Then i returned to the admin and approved a new comment, clicked view site and returned to the blog post. I could see the comment now, however now there was no information under content_type in the admin panel. I went back to my views.py and after the code comment.post = post i added comment.content_object = post, content_type = ContentType.objects.get_for_model(Post), comment.content_type = content_type and then saved the form. This fixed my issue and i was able to see the comment posted and also in the admin panel i could now see if it was a recipe post or a blog post.
+
+# The Recipe page:
+To get here i clicked the blog nav link. On this page  i have Recipe posts. To test this i chose the first Recipe post on the page.
+
+Expectation = I ecpected to click on the Recipe post and be brought to the post content where i would fine and image at the top of the page followed by the Recipe content and under this a form for leaving comments on the bottom right and a list of comments on the left. I used content_type in my Comment model as i was using this model for both Blog posts and Recipes. I needed to use it to keep track of all my models in order to assign the right comments with theyre respective posts.
+
+Result = I was successfully directed tot he post
+
+## Recipe Post:
+I clicked into the first post on the page as a logged OUT user.
+
+Expectation = To see only featured image, Recipe content and commentbox heading.
+Result = I did infact only see featured image, Post content and commentbox heading.
+
+I returned the main Recipe post page and looged in as a registered user
+
+Expectation = To see featured image, Post content and commentbox heading and the form for leaving a comment and a nav link for submitting a user recipe
+
+Result = I did infact only see featured image, Post content and commentbox heading and the form for leaving a comment nd a nav link ofr submitting a user recipe. 
+
+As i was signed in i tested the features of this page.
+The like button when presses reloads the page and the favivon icon is filled in solid color indicating it has sussessfully been liked, a second click on the heart favivon will reload the page and unlike the post leaving a heart outline. The feature acted as normal.
+I left a comment as a user and a pop up box showed saying "Your comment is awaiting approval". I went into the admin panel approved the new comment and clicked view site. I saw my comment and an edit and delete button under only my comment. I will test buttons in a later section.
+
+I clicked on the link for submitting a user recipe i was redirected to a new page containing a form. This was intended and an ecpected rsult. here i had form fields needed to suvmit a blog post the same as in the admin panel. I entered all the inofrmation rewuired and ....... i entered the infor wrong ......
+
+## Subscribe
+
+
+
+# bugs  
+only log into admin panel form main blog page,
 
 # Validator Testing
 

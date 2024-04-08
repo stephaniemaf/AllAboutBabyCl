@@ -44,13 +44,6 @@ class UpdateComment(UpdateView,FormMixin):
             return reverse_lazy('recipe_detail', kwargs={'slug': recipe_slug})
         else:
             return reverse_lazy('home') 
- 
-
-    def get_object(self, queryset=None):
-        obj = super(DeleteView, self).get_object()
-        if not obj.user == self.request.user:
-            raise Http404
-        return obj
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -144,10 +137,12 @@ class PostDetail(View):
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.user = request.user
+            comment.post = post
             comment.content_object = post
-            content_type = ContentType.objects.get(app_label="blog", model="post")
+            content_type = ContentType.objects.get_for_model(Post)
             comment.content_type = content_type
             comment.save()
+            
         else:
             comment_form = CommentForm()
 
