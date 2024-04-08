@@ -62,6 +62,8 @@ Next i have some more detailed mockups of each page i planned for the blog
 ![delc](static/images/delc.png).
 ![suces](static/images/suces.png).
 
+I created my wireframes and mockups on [moqups](https://moqups.com/)
+
 
 # Testing
 
