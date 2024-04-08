@@ -194,8 +194,9 @@ class RecipeDetail(View):
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.user = request.user
+            comment.recipe = recipe
             comment.content_object = recipe
-            content_type = ContentType.objects.get(app_label="blog", model="recipe")
+            content_type = ContentType.objects.get_for_model(Recipe)
             comment.content_type = content_type
             comment.save()
         else:

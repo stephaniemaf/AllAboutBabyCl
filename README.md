@@ -21,7 +21,7 @@ For the recipe page i dublicated these templates and renamed them. so Recipe_ind
 
 ## Authorisaton
 
-Djnago framworks have the ability to implement an admin feature here i am able to Approve comments before the can be seen by the user. I can write adn deploy my block posts and i can also create a user name and password from this admin site. On the admin panel there are roles and permissions. The abilty to create an admin(superuser) and this person had the abily to preform all parts of crud on the site for each model. 
+Djnago framworks have the ability to implement an admin feature here i am able to Approve comments before the can be seen by the user. I can write adn deploy my blog posts and i can also create a user name and password from this admin site. On the admin panel there are roles and permissions. The abilty to create an admin(superuser) and this person had the abily to preform all parts of crud on the site for each model. 
 
 As a registered site user you have the ability to create recipes for the blog and you are able to leave comments for both recipes and blog posts and you can also update and delete these comments. Therby manipulating the database from the front end as a user. 
 
@@ -41,6 +41,27 @@ By logging into the admin panel The super user has the ability to preform full c
 ## Images
 
 When creating blog posts users have the ability to use there own images and if they fail to upload one a default image has been provided in the index.html file.
+
+## WireFrames and Mockups
+
+When desgining this project i designed some mockuos of what i wanted this blog to look like i have linked these below.
+First my basic diagram of what i planned:
+![Diagram](static/images/Diagram.png).
+
+First Basic moqup:
+
+![basicmoq](static/images/basicmoq.png).
+
+Next i have some more detailed mockups of each page i planned for the blog
+![firstp](static/images/firstp.png).
+![2p](static/images/2p.png).
+![3r](static/images/3r.png).
+![login](static/images/login.png).
+![reg](static/images/reg.png).
+![updatec](static/images/updatec.png).
+![delc](static/images/delc.png).
+![suces](static/images/suces.png).
+
 
 # Testing
 
@@ -113,14 +134,62 @@ As i was signed in i tested the features of this page.
 The like button when presses reloads the page and the favivon icon is filled in solid color indicating it has sussessfully been liked, a second click on the heart favivon will reload the page and unlike the post leaving a heart outline. The feature acted as normal.
 I left a comment as a user and a pop up box showed saying "Your comment is awaiting approval". I went into the admin panel approved the new comment and clicked view site. I saw my comment and an edit and delete button under only my comment. I will test buttons in a later section.
 
-I clicked on the link for submitting a user recipe i was redirected to a new page containing a form. This was intended and an ecpected rsult. here i had form fields needed to suvmit a blog post the same as in the admin panel. I entered all the inofrmation rewuired and ....... i entered the infor wrong ......
+I clicked on the link for submitting a user recipe i was redirected to a new page containing a form. This was intended and an ecpected result. Here i had form fields needed to suvmit a blog post the same as in the admin panel. when the form opens there is input boxes for Title, Author, Featured image, Ingredients, Instructions and a submit button. I enetered the correct information in all the fields was redirected back to the recipe blog page. 
+I moved back to the admin panel and published the post. The new post was the first post now on the first row. I clicked into it and left a comment.
+![leavecom](static/images/leavecom.png)
+![Adminapp](static/images/Adminapp.png)
+
+I approved comment in the admin panel 
+![admin](static/images/admin.png)
+
+After approving the comment i returned to the recipe and expected to see a comment and two buttons staying edit and delete
+![comwbut](static/images/comwbut.png)
+
+I am now testing the edit and delete buttons so i am expecting to click either button be redirected to the form linked to it and be able to either edit or delete the comment and be redirected back to the post or recipe. Ill start with edit.
+I clicked the edit button and was brought to a form 
+![updatingcom](static/images/updatingcom.png)
+
+I changed the text on the comment and clicked update and redirected to the comment box and saw my comment had successfully updated 
+![updatedcom](static/images/updatedcom.png)
+
+So i moved onto the delete button. once pressed i was brought to a form asking if i was sure i wanted to delte the comment and the comment i was deleteing
+
+![delcom](static/images/delcom.png)
+
+after this i was redirected to the recipe post again and my comment was gonne.
+![comdel](static/images/comdel.png)
 
 ## Subscribe
+On my subscribe page i have a form for signing up to the newsletter. It contains a heading "Subscribe to our Newsletter and 4 input fields 
+![subscribe](static/images/subscribe.png)
+I entered the sudonom Alex and filled in the rest of the field as you would expect them to be filled with the correct information.
 
+Expectation = I expected to go to the admin panel and unders Subcribes i expected to see Alexs Firstname and Lastname and Email,
+Result = i saw the correct information.
 
+![subscribeadmin](static/images/subscribeadmin.png).
 
+I filled out the form with incorrect information to see how the input boxes would behave.
+
+Expectation = I was expecting the email field to only allow properly configured email as i set it that way and i was expecting the phone number to only accept numbers and the name to only accept letters
+
+Result = The email field worked as expected and did infact request a properly configured email of name@mail.com
+![email](static/images/email.png).
+unfortunaly the other input boxes would not give the same error. and phone number accpted letters and name accepted numbers
+
+Fix = I did not fix this but that is a feature i would like to implement in future updates.
+
+## Buttons
+After testing the buttons on the recipe page i recreated the test on the blog page and was met with the same successful results.I tested the update and delete buttons in the forms and was also as expected. as where all the input forms across the blog and recipe pages.
+
+## Login/Logout/Regisstration
+
+These features are implemented threw Djangos AllAuth system. These all work as expected and the user in registered and able to complete all features documented above in readme and as you can see from screenshots linked throughout the readme file. 
+
+Logging in and out
 # bugs  
-only log into admin panel form main blog page,
+Right now a known bug to me is when i add a recipe from the admin panel and type in the text editor upon posting the p tags are present in the recipe this is an error i would like to fix in furture upates. 
+Another open bug i am aware of is the input fields in the subscribe form accepting numbers and letters where it is not appropriate 
 
 # Validator Testing
 
