@@ -192,25 +192,32 @@ Logging in and out
 # bugs  
 Right now a known bug to me is when i add a recipe from the admin panel and type in the text editor upon posting the p tags are present in the recipe this is an error i would like to fix in furture upates. 
 Another open bug i am aware of is the input fields in the subscribe form accepting numbers and letters where it is not appropriate 
+So towards the end i could not access my project anymore so i have to clone the repository and set up a new one on gitpod using the gitpod template. This cause an unexpected bug where everytime i open the project from github gitpod redownloads all packages and libraries in the requirements.txt file and i have to create a new env.py file and import database urls and keys and then in setings.py i have to add a new allowed host.
 
 # Validator Testing
 
 ## Tested on [Validator](https://pep8ci.herokuapp.com/)
 Code passed through validator with no issues
-![val](images/val.png)
-![val1](images/val1.png)
-![val2](images/val2.png)
-![val3](images/val3.png)
-![val4](images/val4.png)
+![val](static/images/val.png)
+![val1](static/images/val1.png)
+![val2](static/images/val2.png)
+![val3](static/images/val3.png)
+![val4](static/images/val4.png)
+
+
+[CssValidator](https://jigsaw.w3.org/css-validator/validator)
+![cssval](static/images/cssval.png)
+
 
 
 # Credits 
 I took ideas for this project from the code institute walkthrough I think therforeI blog.
 
-# Important links
-Link to my GitHup repository
+
 
 * Hosted on heroku
 
 # notes
 Before i started this module i had a baby and doing this project with a newborn was quite intense and difficult i wasnt able to put in the amount of work and time i was before and its reflected in my work i understand i may not pass today but in the mean time i will keep learning and hopfully if i need to resubmit it will be up to the standard i want and is needed. 
+
+I started this project on app.codeanywhere however towards the end the free hours ran out which i think was a new unexpected feature as i hadnt had this issue before. So towards the end i could not access my project anymore so i have to clone the repository and set up a new one on gitpod using the gitpod template. This cause an unexpected bug where everytime i open the project from github gitpod redownloads all packages and libraries in the requirements.txt file and i have to create a new env.py file and import database urls and keys and then in setings.py i have to add a new allowed host. I will detail these steps in the project submission page to avoid leaving secrets on this readme.
