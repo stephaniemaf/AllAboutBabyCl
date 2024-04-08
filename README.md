@@ -1,8 +1,8 @@
 # Introduction
 
-This is a blog created in Django. My Blog name is All About Baby. This Blog is intended to give users information about babies threw thier first year of life. The posts in this blog are related to baby development and feeding. There is a navigation bar at the top of the page and from the blog page you can navigate to a page with recipes. On this recipe page you will find recipes for feeding your baby there first foods. You are able to sign into this website and as an authenticated user you will be able to leave comments and like/unlike posts and recipes. You are to log out and register to the site also. There is an admin panel for Admin users the loh in information for his will be found at the end of this ReadMe.
+This is a blog created in Django. My Blog name is All About Baby. This Blog is intended to give users information about babies threw their first year of life. The posts in this blog are related to baby development and feeding. There is a navigation bar at the top of the page and from the blog page you can navigate to a page with recipes. On this recipe page you will find recipes for feeding your baby there first foods. You are able to sign into this website and as an authenticated user you will be able to leave comments and like/unlike posts and recipes. You are to log out and register to the site also. There is an admin panel for Admin users the loh in information for his will be found at the end of this ReadMe.
 The data base for my blog is hosted on [elephantsql](https://www.elephantsql.com/) 
-The site will be deployed threw [Hreoku](https://id.heroku.com/)
+The site will be deployed threw [Heroku](https://id.heroku.com/)
 Images stored on [cloudinary](https://cloudinary.com)
 
 # How to begin
@@ -209,15 +209,22 @@ Code passed through validator with no issues
 ![cssval](static/images/cssval.png)
 
 
+# Deployment Steps:
+To deploy this project you must go to my github repo:
+[Github repo](https://github.com/stephaniemaf/AllAboutBabyCl)
+
+Then click the down arrow where is says Code! You will see a cloning link. You can create a new repo using this link. This project is created with a template for gitpod but you may use any ide you like. There is an option to change the template when creating a new repository. If the packages dont install automatically use this code in your terminal.
+* "pip install -r requirements.txt".
+you will now have your own copy of this project.
 
 # Credits 
 I took ideas for this project from the code institute walkthrough I think therforeI blog.
 
 
 
-* Hosted on heroku
+* Hosted on [Heroku](https://id.heroku.com/)
 
 # notes
 Before i started this module i had a baby and doing this project with a newborn was quite intense and difficult i wasnt able to put in the amount of work and time i was before and its reflected in my work i understand i may not pass today but in the mean time i will keep learning and hopfully if i need to resubmit it will be up to the standard i want and is needed. 
 
-I started this project on app.codeanywhere however towards the end the free hours ran out which i think was a new unexpected feature as i hadnt had this issue before. So towards the end i could not access my project anymore so i have to clone the repository and set up a new one on gitpod using the gitpod template. This cause an unexpected bug where everytime i open the project from github gitpod redownloads all packages and libraries in the requirements.txt file and i have to create a new env.py file and import database urls and keys and then in setings.py i have to add a new allowed host. I will detail these steps in the project submission page to avoid leaving secrets on this readme.
+I started this project on app.codeanywhere however towards the end the free hours ran out which i think was a new unexpected feature as i hadnt had this issue before. So towards the end i could not access my project anymore so i have to clone the repository and set up a new one on gitpod using the gitpod template. 
