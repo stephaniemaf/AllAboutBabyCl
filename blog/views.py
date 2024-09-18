@@ -47,7 +47,13 @@ class UpdateComment(UpdateView,FormMixin):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)
+        return super().form_valid(form)def get_object(self, queryset=None):
+        obj = super(DeleteView, self).get_object()
+        if not obj.user == self.request.user:
+            raise Http404
+        return obj
+
+    
 
 class DeleteComment(DeleteView,FormMixin):
     model = Comment
@@ -123,7 +129,7 @@ class PostDetail(View):
             },
         )
 
-        
+    @method_decorator(login_required)
     def post(self, request, slug, *args, **kwargs):
 
         queryset = Post.objects.filter(status=1)
