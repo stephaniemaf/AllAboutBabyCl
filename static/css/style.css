@@ -301,6 +301,11 @@ body {
 }
 
 /*allauth form styling*/
+.container.header-container {
+   margin-top: 50px;
+   margin-bottom: 50px;
+}
+
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */
     color: #6c757d; /* text-secondary */
