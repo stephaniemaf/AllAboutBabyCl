@@ -118,5 +118,27 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function scrollToBottom(timedelay = 200) {
+        var scrollId;
+        var height = 0;
+        var minScrollHeight = 200;
+        scrollId = setInterval(function () {
+            if (height <= document.body.scrollHeight) {
+                window.scrollBy(0, minScrollHeight);
+            } else {
+                clearInterval(scrollId);
+            }
+            height += minScrollHeight;
+        }, timedelay);
+    }
 
+    window.onload = function () {
+        var isCommented = "{{ commented|yesno:'True,False' }}"; 
+        if (isCommented === "True") {
+            scrollToBottom(200);
+        }
+    };
+
+</script>
 {% endblock content %}

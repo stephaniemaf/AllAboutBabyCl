@@ -216,24 +216,31 @@ body {
 }
 
 .btn-signup {
-    background-color: #23BBBB;
-    color: #fff;
+    width: 80px;
+    height: 20px;
+    line-height: 1;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-family: Playfair Display, sans-serif;
+    background-color: rgb(81, 78, 78);
+    color: white;
+    text-decoration: none;
 }
 
 .btn-signup:hover,
 .btn-signup:active {
-    background-color: #fff;
-    color: #23BBBB;
+    color: white;
+    background: #291526;
 }
 
 .link {
-    color: #23BBBB;
+    color: #e4690b;
     text-decoration: none;
 }
 
 .link:hover,
 .link:active {
-    color: #445261;
+    color: #222;
     text-decoration: underline;
 }
 
@@ -291,4 +298,57 @@ body {
 .date-style{
     font-weight: normal;
     font-size: small;
+}
+
+/*allauth form styling*/
+.allauth-form-inner-content p {
+    margin-top: 1.5rem; /* mt-4 */
+    color: #6c757d; /* text-secondary */
+}
+
+.allauth-form-inner-content input {
+    border-color: #aab7c4;
+    border-radius: 0;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+	/* btn */
+	display: inline-block;
+    font-weight: 300;
+    color: peachpuff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #202021;
+    border: 1px solid #202021;
+    padding: .20rem .4rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {	
+	color: #fff;
+    background-color: #222;
+    border-color: #222;
+}
+
+.allauth-form-inner-content a {
+	color: #e4690b; /* text-info */
 }

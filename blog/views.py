@@ -47,8 +47,10 @@ class UpdateComment(UpdateView,FormMixin):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)def get_object(self, queryset=None):
-        obj = super(DeleteView, self).get_object()
+        return super().form_valid(form)
+        
+    def get_object(self, queryset=None):
+        obj = super(UpdateView, self).get_object()
         if not obj.user == self.request.user:
             raise Http404
         return obj
@@ -148,7 +150,7 @@ class PostDetail(View):
             content_type = ContentType.objects.get_for_model(Post)
             comment.content_type = content_type
             comment.save()
-            
+            commented = True
         else:
             comment_form = CommentForm()
 
@@ -205,6 +207,7 @@ class RecipeDetail(View):
             content_type = ContentType.objects.get_for_model(Recipe)
             comment.content_type = content_type
             comment.save()
+            commented = True
         else:
             comment_form = CommentForm()
 
