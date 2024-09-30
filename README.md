@@ -273,7 +273,7 @@ Then click the down arrow where is says Code! You will see a cloning link. You c
 you will now have your own copy of this project.
 
 # Credits 
-I took ideas for this project from the code institute walkthrough I think therforeI blog.
+I took ideas for this project from the code institute walkthrough I think therfore I blog.
 
 
 
