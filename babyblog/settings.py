@@ -33,7 +33,7 @@ DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['*','8000-stephaniema-allaboutbab-j7xeysz79fq.ws-eu116.gitpod.io', 'localhost']
+ALLOWED_HOSTS = ['baby-blog.herokuapp.com','8000-stephaniema-allaboutbab-j7xeysz79fq.ws-eu116.gitpod.io', 'localhost']
 
 
 
