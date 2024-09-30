@@ -33,7 +33,7 @@ DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['baby-blog.herokuapp.com']
+[ALLOWED_HOSTS = ['baby-blog.herokuapp.com', '.herokuapp.com']]
 
 
 
