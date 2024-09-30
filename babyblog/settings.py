@@ -29,11 +29,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ["8000-stephaniema-allaboutbab-j7xeysz79fq.ws-eu116.gitpod.io", 'localhost']
+ALLOWED_HOSTS = ["baby-blog.herokuapp.com", 'localhost']
 
 
 
