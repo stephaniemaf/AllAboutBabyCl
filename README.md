@@ -257,9 +257,10 @@ Code passed through validator with no issues
 ![val2](static/images/val2.png)
 ![val3](static/images/val3.png)
 ![val4](static/images/val4.png)
+![lighthouse](static/images/lighthouse.png)
 
 
-[CssValidator](https://jigsaw.w3.org/css-validator/validator)
+![CssValidator](https://jigsaw.w3.org/css-validator/validator)
 ![cssval](static/images/cssval.png)
 
 
