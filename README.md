@@ -1,17 +1,71 @@
 # Introduction
 
-This is a blog created in Django. My Blog name is All About Baby. This Blog is intended to give users information about babies threw their first year of life. The posts in this blog are related to baby development and feeding. There is a navigation bar at the top of the page and from the blog page you can navigate to a page with recipes. On this recipe page you will find recipes for feeding your baby there first foods. You are able to sign into this website and as an authenticated user you will be able to leave comments and like/unlike posts and recipes. You are to log out and register to the site also. There is an admin panel for Admin users the loh in information for his will be found at the end of this ReadMe.
-The data base for my blog is hosted on [elephantsql](https://www.elephantsql.com/) 
+This is a blog created in Django. My Blog name is All About Baby. This Blog is intended to give users information about babies threw their first year of life. The posts in this blog are related to baby development and feeding. There is a navigation bar at the top of the page and from the blog page you can navigate to a page with recipes. On this recipe page you will find recipes for feeding your baby there first foods. You are able to sign into this website and as an authenticated user you will be able to leave comments and like/unlike posts and recipes. You are to log out and register to the site also. There is an admin panel for Admin users the log in information for his will be found at the end of this ReadMe.
+<br>
+The data base for my blog is hosted on [Elephantsql](https://www.elephantsql.com/) 
+<br>
 The site will be deployed threw [Heroku](https://id.heroku.com/)
-Images stored on [cloudinary](https://cloudinary.com)
+<br>
+Images stored on [Cloudinary](https://cloudinary.com)
 
-# How to begin
+ ## Features
+ * User Authentication
+ * Blog posts
+ * Recipe posts
+ * Ability to upload your own recipe ideas for inclusion on the blog
+ * Newletter
+ * Ability to post comments and likes on all blog posts
+ * Admin Panel for monitoring site and ease of managing products, orders, customer information and newsletter creation
 
-When you first get to my webside blog you can see posts and recipes by navigating through the nav bar at the top. If you want to leave comments you must register first as a user of the site. Once registered you will be able to not only see the posts and recipes but you will be able to leave comments on posts and you will be able to like them also.
+# Prerequisites 
 
-Once you leave a comment you will see an edit and delete button under your own comment. If you click on either button you will be brought to a new form page. From here you can edit or delete your commetn depending on which button you clicked. Once the action has been preformed, you will be redirected back to the post or recipe that you clicked the button on.
+This project is made with [Django 3.2.23](https://docs.djangoproject.com/en/5.0/releases/3.2.23/). <br> Django is compatible with [Windows 10](https://www.microsoft.com/en-gb/software-download/windows10), [Ubuntu](https://ubuntu.com/) and [MacOS](https://www.apple.com/ie/macos/sonoma/).<br> <p>For this project Im using [Django Allauth 0.58.2](https://docs.allauth.org/en/latest/installation/quickstart.html), I have linked the Django Allauth docs for reference.<br> This project is supported on [Python 3.9.17](https://www.python.org/). I am using [Gitpod](https://www.gitpod.io/) for my ide, you may be able to use new versions of python but i have not tested this. <br></p>
+Django supports many databases, I had chosen to use Elephantsql when i started this project, however this company has reached its end of life and will be closing down, so you may choose any other databases you prefare and best suits your needs. Refer to [Djangos Documentation on Databases](https://docs.djangoproject.com/en/5.0/ref/databases/). 
+Media images are saved on [Cloudinary](https://cloudinary.com/) however feel free to use any image hosting platform you prefare. <br>
+This project is Hosted on [Heroku](https://www.heroku.com) when deployed. 
+
+# Deployment Instructions
+
+To deploy this project please follow the following instructions. <br>
+1.  Click on this [github link](https://github.com/stephaniemaf/AllAboutBabyCl) and go to my git hub page. Click on the green code button and use the web link to clone the project or click copy. Enter this code in your terminal window:
+    * *git clone https://github.com/username/repository-name.git*  
+    ** Replace with the actual URL of the repository you want to clone.  
+    *  *cd repository-name*  
+    ** Navigate to the cloned repository
+
+2. When you have done this and the project has loaded into your ide you will need to create and env.py file with your own secret key and database URL and media hosting URL, You will need to import os at the top of the env.py file so be aware of this if it is not automatically there when you create your env.py file. For example your database url will look like this: 
+    * **os.environ[DATABASE_URL] = "database_url_here"**, replace database_url_here with your actual database url when you have signed up for it.
+3. Next up you will need to install all the libraries and packages contained in the requirements.txt file, First be sure your have python and pip installed, to do this navigate to your terminal and enter the code: 
+    * *python --version*  
+    * *pip --version* 
+4. If you do not have these installed already refer to this [Python link](https://www.python.org/downloads/) from here you can install the newest version of python or any your prefare i have verified that python 3.9.17 will work with this project.
+When you have verified you have these installed enter the code:
+    * *pip install -r requirements.txt*
+5. Once this is done in the terminal window type in:
+    * *python3 manage.py runserver*  
+    **The first time you run this you will get an Disallowed Host error, in this case just copy the url in the top bar and go back to the settings.py file and under allowed_hosts paste your url there in single quotes. run the project again and you should be on the baby-thing-shop website.
+5. To access the admin panel and you will need to create a super user this can be done in the terminal window on your workspace. Firstly type in the code:
+    * *python manage.py createsuperuser*.  
+    **Follow the prompts and i believe any email is acceptable real or not so *notreal@email.com* ect will work. Next enter a password and then confirm it, note you will not be able to see anything you type in here so just press enter and then enter your password again and press enter. When this is done run your project and navigate to /admin (enter this at the end of the url in the top bar) from here log into the admin panel and have a look around.</p>
+
+## User Data
+* Users personal data including Name, Email, Passwords ect is stored securly on a database for using with access of the site
+
+## Security 
+* Djangos Authentication system ensures secure Login and Signup
+* CSRF attacks allow a malicious user to execute actions using the credentials of another user without that user’s knowledge or 
+  consent. Django has built-in protection against most types of CSRF attacks, providing you have enabled and used it where appropriate
+* Admin features are protected by requiring administrator credentials for access. Resigtered users are unable to access this 
+  feature
+* Sensitive data, such as payment information, is encrypted during transmission using HTTPS
+* SQL injection protection, djangos querysets are protected by using query parameterization
+* Clickjacking protection is implemented by django via X-frame-Options middleware<br><br>
+[Django Security Documentation](https://docs.djangoproject.com/en/5.0/topics/security/)
 
 # Blog Functionality
+When you first get to my webside blog you can see posts and recipes by navigating through the nav bar at the top. If you want to leave comments you must register first as a user of the site. Once registered you will be able to not only see the posts and recipes but you will be able to leave comments on posts and you will be able to like them also.
+
+This blog will allow you to upload your own recipes to the website after admin aproval. You can only read blog posts but will be allowed to leave comments after admin approval. Your Likes will be automatically approved without the need for admin approval. You are able to sign up for an account, This allows you to leave edit and delete only your own comments but you may view anyones comments.
 
 ## Templates
 
